@@ -2,9 +2,9 @@ apiVersion: workspaces.kommander.mesosphere.io/v1alpha1
 kind: Project
 metadata:
   annotations:
-    kommander.mesosphere.io/description: "Hellio I am Robin"
+    kommander.mesosphere.io/description: "Hello I am Robin"
     kommander.mesosphere.io/display-name: robin
-  name: batman
+  name: robin
   namespace: batcave
 spec:
   namespaceName: robin
