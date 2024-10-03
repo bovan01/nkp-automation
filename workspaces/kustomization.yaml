@@ -1,3 +1,3 @@
 resources:
-#- batcave.yaml
+- batcave.yaml
 - oscorp.yaml
