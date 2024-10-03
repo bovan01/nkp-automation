@@ -3,6 +3,8 @@ kind: Workspace
 metadata:
   creationTimestamp: null
   name: batcave
+  labels:
+    caren.nutanix.com/namespace-sync: ""
 spec:
   namespaceName: batcave
 status: {}
