@@ -1,3 +1,4 @@
+kind: Kustomization
 resources:
 - oscorp
 - batcave
