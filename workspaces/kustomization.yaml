@@ -1,0 +1,9 @@
+resources:
+- oscorp
+- batcave
+sortOptions:
+  order: legacy
+  legacySortOptions:
+    orderFirst:
+    - Workspace
+    - Project 
