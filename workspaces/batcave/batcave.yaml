@@ -1,3 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: batcave
+spec: {}
 ---
 apiVersion: workspaces.kommander.mesosphere.io/v1alpha1
 kind: Workspace
@@ -6,6 +12,7 @@ metadata:
   name: batcave
   labels:
     caren.nutanix.com/namespace-sync: ""
+    workspace.kommander.mesosphere.io/allow-existing-namespace: "true"
 spec:
   namespaceName: batcave
 status: {}
