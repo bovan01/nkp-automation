@@ -6,6 +6,5 @@ sortOptions:
   order: legacy
   legacySortOptions:
     orderFirst:
-    - Namespace    
     - Workspace
     - Project 
