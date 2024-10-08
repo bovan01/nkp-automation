@@ -61,10 +61,12 @@ Here is the structure of the folders and files.
 │       │   │   ├── batman
 │       │   │   │   ├── batman.yaml
 │       │   │   │   └── rbac
+│       │   │   ├── kustomization.yaml
 │       │   │   └── robin
 │       │   │       ├── rbac
 │       │   │       └── robin.yaml
 │       │   └── rbac
+│       ├── kustomization.yaml
 │       └── oscorp
 │           ├── clusters
 │           ├── oscorp.yaml
@@ -72,9 +74,9 @@ Here is the structure of the folders and files.
 │           │   ├── green-goblin
 │           │   │   ├── green-goblin.yaml
 │           │   │   └── rbac
+│           │   ├── kustomization.yaml
 │           │   └── spiderman
 │           │       ├── rbac
 │           │       └── spiderman.yaml
 │           └── rbac
-└── workspaces-kustomization.yaml
 ```
