@@ -9,6 +9,18 @@ Simply apply the following manifest to apply this to the cluster.
 > Note: Make changes to the workspacs, projects, rbac and clusters to be created as required
 
 ```
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: gitops-demo
+  namespace: kommander
+spec:
+  interval:  5s
+  ref:
+    branch: main
+  timeout: 20s
+  url: https://github.com/arbhoj/cluster-gitops.git
+---
 kubectl apply -f -  <<EOF
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
