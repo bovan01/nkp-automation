@@ -4,4 +4,4 @@ resources:
 - ../../resources/workspaces/batcave/projects/batman/batman.yaml
 - ../../resources/workspaces/batcave/projects/robin/robin.yaml
 - ../../resources/workspaces/oscorp/projects/spiderman/spiderman.yaml
-- ../../resources/workspaces/oscorp/projects/spiderman/green-goblin.yaml
+- ../../resources/workspaces/oscorp/projects/green-goblin/green-goblin.yaml
