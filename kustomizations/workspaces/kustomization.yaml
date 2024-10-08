@@ -1,5 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../../workspaces/batcave.yaml
-- ../../workspaces/oscorp.yaml
+- ../../resources/workspaces/batcave.yaml
+- ../../resources/workspaces/oscorp.yaml
