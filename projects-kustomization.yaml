@@ -5,7 +5,7 @@ metadata:
   namespace: kommander
 spec:
   dependsOn:
-    name: clusterops-workspaces
+  - name: clusterops-workspaces
     namespace: kommander
   interval: 5s
   path: ./kustomizations/projects
