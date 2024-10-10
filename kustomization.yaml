@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
 - global-kustomization.yaml
 - workspaces-kustomization.yaml
-- workspaces-rbac-kustomization.yaml
+- workspace-rbac-kustomization.yaml
 - projects-kustomization.yaml
