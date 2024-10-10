@@ -4,6 +4,7 @@ metadata:
   finalizers:
   - workspaces.kommander.mesosphere.io/virtualgroupworkspacerolebinding
   namespace: batcave
+  name: superheros-workspace-admin
 spec:
   placement:
     clusterSelector: {}
