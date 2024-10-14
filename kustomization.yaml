@@ -4,4 +4,5 @@ resources:
 - global-kustomization.yaml
 - workspaces-kustomization.yaml
 - workspace-rbac-kustomization.yaml
+- workspace-applications-kustomization.yaml
 - projects-kustomization.yaml
