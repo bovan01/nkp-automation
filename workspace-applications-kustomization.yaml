@@ -4,6 +4,9 @@ metadata:
   name: clusterops-workspace-applications
   namespace: kommander
 spec:
+  dependsOn:
+  - name: clusterops-workspaces
+    namespace: kommander
   interval: 5s
   path: ./kustomizations/workspaces/applications
   prune: true
