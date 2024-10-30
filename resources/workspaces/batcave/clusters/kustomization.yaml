@@ -7,5 +7,5 @@ patches:
       group: cluster.x-k8s.io
       version: v1beta1
       kind: Cluster
-      name: nkp-dragon-wld
+      name: nkp-dragon-wld-1
    path: deploy-nkp-dragon-wld-1-pool2.yaml
