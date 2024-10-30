@@ -10,6 +10,18 @@ Simply apply the following manifest to apply this to the cluster.
 
 ```
 kubectl apply -f -  <<EOF
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: gitops-demo
+  namespace: kommander
+spec:
+  interval:  5s
+  ref:
+    branch: dev
+  timeout: 20s
+  url: https://github.com/arbhoj/cluster-gitops.git
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
