@@ -7,7 +7,7 @@ The objective of this project is to provide guidance on using gitops to manage N
 
 Simply apply the following manifest to apply this to the cluster.
 > Note: Make changes to the workspacs, projects, rbac and clusters to be created as required
-
+> For clusters it is assumed that any secrets with PC credentials or Registry Credentials will be applied directly in the given workspace namespace of the Management Cluster
 ```
 kubectl apply -f -  <<EOF
 apiVersion: source.toolkit.fluxcd.io/v1
