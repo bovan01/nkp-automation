@@ -4,4 +4,4 @@ metadata:
   name: foobar-clusters
   namespace: batcave
 data:
-  foo: bar  
+  foo: bar
