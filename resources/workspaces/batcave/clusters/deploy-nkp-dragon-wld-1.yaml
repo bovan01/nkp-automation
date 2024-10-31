@@ -5,6 +5,7 @@ metadata:
     caren.nutanix.com/cluster-uuid: 0192decb-8f55-75f3-a356-be154916a399
   labels:
     cluster.x-k8s.io/provider: nutanix
+    infraId: dragon-7ab7m    
     konvoy.d2iq.io/cluster-name: nkp-dragon-wld-1
     konvoy.d2iq.io/provider: nutanix
   name: nkp-dragon-wld-1
@@ -32,7 +33,7 @@ spec:
           ccm:
             credentials:
               secretRef:
-                name: pc-credentials
+                name: nkp-dragon-wld-1-pc-credentials
             strategy: HelmAddon
           clusterAutoscaler:
             strategy: HelmAddon
@@ -47,7 +48,7 @@ spec:
               nutanix:
                 credentials:
                   secretRef:
-                    name: pc-credentials-for-csi
+                    name: nkp-dragon-wld-1-pc-credentials-for-csi
                 storageClassConfigs:
                   volume:
                     allowExpansion: false
@@ -108,7 +109,7 @@ spec:
           prismCentralEndpoint:
             credentials:
               secretRef:
-                name: pc-credentials
+                name: nkp-dragon-wld-1-pc-credentials
             insecure: false
             url: https://pc.dragon.cloudnative.nvdlab.net:9440
         users:
