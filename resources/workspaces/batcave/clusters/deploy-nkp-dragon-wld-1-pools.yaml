@@ -3,8 +3,6 @@ kind: Cluster
 metadata:
   name: not-used
   namespace: batcave
-  annotations:
-    kustomize.toolkit.fluxcd.io/ssa: Merge
 spec:
   topology:
     workers:
