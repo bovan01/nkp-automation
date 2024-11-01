@@ -35,7 +35,7 @@ spec:
           ccm:
             credentials:
               secretRef:
-                name: nkp-dragon-wld-2-pc-credentials
+                name: pc-credentials
             strategy: HelmAddon
           clusterAutoscaler:
             strategy: HelmAddon
@@ -50,7 +50,7 @@ spec:
               nutanix:
                 credentials:
                   secretRef:
-                    name: nkp-dragon-wld-2-pc-credentials-for-csi
+                    name: pc-credentials-for-csi
                 storageClassConfigs:
                   volume:
                     allowExpansion: false
@@ -111,7 +111,7 @@ spec:
           prismCentralEndpoint:
             credentials:
               secretRef:
-                name: nkp-dragon-wld-2-pc-credentials
+                name: pc-credentials
             insecure: false
             url: https://pc.dragon.cloudnative.nvdlab.net:9440
         users:
