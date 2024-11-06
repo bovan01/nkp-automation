@@ -39,8 +39,8 @@ spec:
       - class: default-worker
         metadata:
           annotations:
-            cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "1"
-            cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "1"
+            cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "2"
+            cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "2"
         name: pool3
         variables:
           overrides:
