@@ -1,8 +1,6 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
-  annotations:
-    caren.nutanix.com/cluster-uuid: 0192decb-8f55-75f3-a356-be154916a399
   labels:
     cluster.x-k8s.io/cluster-name: nkp-dragon-wld-1
     cluster.x-k8s.io/provider: nutanix
