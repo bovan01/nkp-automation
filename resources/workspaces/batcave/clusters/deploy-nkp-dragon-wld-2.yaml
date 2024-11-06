@@ -71,8 +71,8 @@ spec:
           serviceLoadBalancer:
             configuration:
               addressRanges:
-              - end: 172.16.0.21
-                start: 172.16.0.24
+              - start: 172.16.0.21
+                end: 172.16.0.24
             provider: MetalLB
         controlPlane:
           nutanix:
