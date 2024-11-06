@@ -37,10 +37,6 @@ spec:
                   vcpuSockets: 8
                   vcpusPerSocket: 1
       - class: default-worker
-        metadata:
-          annotations:
-            cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "1"
-            cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "1"
         name: pool2
         replicas: 1
         variables:
