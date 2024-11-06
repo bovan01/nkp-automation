@@ -42,6 +42,7 @@ spec:
             cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "1"
             cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "1"
         name: pool3
+        replicas: 1
         variables:
           overrides:
           - name: workerConfig
