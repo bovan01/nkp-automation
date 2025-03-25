@@ -1,31 +1,32 @@
-# cluster-gitops
+# nkp-automation
 
 The objective of this project is to provide guidance on using gitops to manage NKP Management Cluster resources like:
-- Workspaces & Workspace RBAC
-- Projects & Workspace RBAC
+- Workspaces & Projects RBAC
+- RBAC
 - Clusters
+- Appdeployments
 
 Simply apply the following manifest to apply this to the cluster.
-> Note: Make changes to the workspacs, projects, rbac and clusters to be created as required
+> Note: Make changes to the workspaces, projects, rbac and clusters to be created as required
 
 ```
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: gitops-demo
+  name: nkp-automation
   namespace: kommander
 spec:
   interval:  5s
   ref:
     branch: main
   timeout: 20s
-  url: https://github.com/arbhoj/cluster-gitops.git
+  url: https://github.com/bovan01/nkp-automation.git
 ---
 kubectl apply -f -  <<EOF
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: clusterops-demo
+  name: nkp-kustomization
   namespace: kommander
 spec:
   interval: 5s
@@ -33,7 +34,7 @@ spec:
   prune: true
   sourceRef:
    kind: GitRepository
-   name: gitops-demo
+   name: nkp-automation
    namespace: kommander
 EOF
 
