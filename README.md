@@ -1,7 +1,7 @@
 # nkp-automation
 
 The objective of this project is to provide guidance on using gitops to manage NKP Management Cluster resources like:
-- Workspaces & Projects RBAC
+- Workspaces & Projects
 - RBAC
 - Clusters
 - Appdeployments
