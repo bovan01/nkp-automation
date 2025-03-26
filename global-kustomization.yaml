@@ -1,0 +1,13 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: nkp-global-automation
+  namespace: kommander
+spec:
+  interval: 5s
+  path: ./kustomizations/global
+  prune: true
+  sourceRef:
+   kind: GitRepository
+   name: nkp-wolves-automation
+   namespace: kommander
