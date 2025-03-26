@@ -1,0 +1,16 @@
+apiVersion: workspaces.kommander.mesosphere.io/v1alpha1
+kind: Project
+metadata:
+  annotations:
+    kommander.mesosphere.io/description: "Red wolf project"
+    kommander.mesosphere.io/display-name: red
+  name: red
+  namespace: wolves
+spec:
+  namespaceName: red
+  placement:
+    clusterSelector:
+      matchLabels:
+        env: test
+  workspaceRef:
+    name: wolves
