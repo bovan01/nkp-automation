@@ -1,7 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../../resources/workspaces/batcave/projects/batman/batman.yaml
-- ../../resources/workspaces/batcave/projects/robin/robin.yaml
-- ../../resources/workspaces/oscorp/projects/spiderman/spiderman.yaml
-- ../../resources/workspaces/oscorp/projects/green-goblin/green-goblin.yaml
+- ../../resources/workspaces/wolves/projects/gray/gray.yaml
+- ../../resources/workspaces/wolves/projects/red/red.yaml
