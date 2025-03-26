@@ -24,7 +24,7 @@ spec:
     class: nkp-nutanix
     controlPlane:
       metadata: {}
-      replicas: 3
+      replicas: 1
     variables:
     - name: clusterConfig
       value:
@@ -54,9 +54,8 @@ spec:
                     parameters:
                       csi.storage.k8s.io/fstype: ext4
                       description: CSI StorageClass nutanix-volume for matriarch
-                      flashMode: DISABLED
                       hypervisorAttached: ENABLED
-                      storageContainer: default
+                      storageContainer: GSO-Everglade-07-StorageContainer
                       storageType: NutanixVolumes
                     reclaimPolicy: Delete
                     volumeBindingMode: WaitForFirstConsumer
@@ -68,23 +67,20 @@ spec:
           serviceLoadBalancer:
             configuration:
               addressRanges:
-              - start: 172.16.0.17
-                end: 172.16.0.19
+              - start: 10.48.104.178
+                end: 10.48.104.178
             provider: MetalLB
         controlPlane:
           nutanix:
             machineDetails:
               bootType: uefi
               cluster:
-                name: matriarch
+                name: GSO-Everglade-07
                 type: name
               image:
                 name: nkp-rocky-9.5-1.31.4-20250317202029
                 type: name
-              memorySize: 16Gi
-              project:
-                name: nkp-lab
-                type: name
+              memorySize: 8Gi
               subnets:
               - name: 567
                 type: name
@@ -95,13 +91,10 @@ spec:
           providers:
           - secretbox: {}
         globalImageRegistryMirror:
-          credentials:
-            secretRef:
-              name: image-registry-mirror-credentials
-          url: https://harbor.infrastructure.cloudnative.nvdlab.net/nkp
+          url: https://10.48.104.168:5000
         nutanix:
           controlPlaneEndpoint:
-            host: 172.16.0.15
+            host: 10.48.104.177
             port: 6443
             virtualIP:
               provider: KubeVIP
@@ -109,8 +102,8 @@ spec:
             credentials:
               secretRef:
                 name: pc-credentials
-            insecure: false
-            url: https://pc.dragon.cloudnative.nvdlab.net:9440
+            insecure: true
+            url: https://10.48.53.237:9440
         users:
         - name: bovan01
           sshAuthorizedKeys:
