@@ -1,0 +1,12 @@
+apiVersion: kommander.mesosphere.io/v1beta1
+kind: VirtualGroup
+metadata:
+  annotations:
+    kommander.mesosphere.io/display-name: signarf-devops
+  generation: 1
+  name: signarf-devops
+spec:
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: oidc:scientists
