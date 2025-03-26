@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+#Dummy configmap in case there is no cluster in the workspace namespace
+- dummy-configmap.yaml
+- deploy-matriarch.yaml
+- deploy-signarf.yaml
+patches:
+ - target:
+      group: cluster.x-k8s.io
+      version: v1beta1
+      kind: Cluster
+      name: matriarch
+   path: deploy-matriarch-wkrs.yaml
+ - target:
+      group: cluster.x-k8s.io
+      version: v1beta1
+      kind: Cluster
+      name: signarf
+   path: deploy-matriarch-wkrs.yaml
