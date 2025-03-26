@@ -1,19 +1,22 @@
 # nkp-automation
 
-The objective of this project is to provide guidance on using gitops to manage NKP Management Cluster resources like:
+The objective of this github repo is to provide an example on using gitops & nkp's fluxCD to automate management of NKP Management Cluster resources such as:
 - Workspaces & Projects
 - RBAC
 - Clusters
 - Appdeployments
 
-Simply apply the following manifest to apply this to the cluster.
-> Note: Make changes to the workspaces, projects, rbac and clusters to be created as required
+In this example, NKP automation will occur & be limited to the 'wolves' workspace & its projects, 'red' & 'gray'.
+
+Apply the following manifest to the NKP Management Cluster.
+**NOTE: Make changes to the resources (workspaces, project, rbac, clusters & appdeployments) as necessary to meet desired needs. Any secrets with PC or registry credentials will be applied directly in the given workspace namespace of the NKP Management Cluster.**
 
 ```
+kubectl apply -f - <<EOF
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: nkp-automation
+  name: nkp-wolves-automation
   namespace: kommander
 spec:
   interval:  5s
@@ -34,13 +37,10 @@ spec:
   prune: true
   sourceRef:
    kind: GitRepository
-   name: nkp-automation
+   name: nkp-wolves-automation
    namespace: kommander
 EOF
-
-
 ```
-
 Here is the structure of the folders and files. 
 ```
 ├── kustomization.yaml
@@ -55,27 +55,16 @@ Here is the structure of the folders and files.
 ├── projects-kustomization.yaml
 ├── resources
 │   └── workspaces
-│       ├── batcave
-│       │   ├── batcave.yaml
-│       │   ├── clusters
-│       │   ├── projects
-│       │   │   ├── batman
-│       │   │   │   ├── batman.yaml
-│       │   │   │   └── rbac
-│       │   │   └── robin
-│       │   │       ├── rbac
-│       │   │       └── robin.yaml
-│       │   └── rbac
-│       └── oscorp
-│           ├── clusters
-│           ├── oscorp.yaml
-│           ├── projects
-│           │   ├── green-goblin
-│           │   │   ├── green-goblin.yaml
-│           │   │   └── rbac
-│           │   └── spiderman
-│           │       ├── rbac
-│           │       └── spiderman.yaml
-│           └── rbac
+│       └── wolves
+│           ├── wolves.yaml
+│           ├── clusters
+│           ├── projects
+│           │   ├── gray
+│           │   │   ├── gray.yaml
+│           │   │   └── rbac
+│           │   └── red
+│           │       ├── rbac
+│           │       └── red.yaml
+│           └── rbac
 └── workspaces-kustomization.yaml
 ```
