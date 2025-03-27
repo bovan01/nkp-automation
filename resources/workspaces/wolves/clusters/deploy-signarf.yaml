@@ -96,7 +96,7 @@ spec:
           url: http://10.48.104.168:5000
         nutanix:
           controlPlaneEndpoint:
-            host: 10.48.104.177
+            host: 10.48.104.111
             port: 6443
             virtualIP:
               provider: KubeVIP
