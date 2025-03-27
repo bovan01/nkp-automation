@@ -19,7 +19,7 @@ spec:
     host: ""
     port: 0
   topology:
-    class: nkp-nutanix-v2.14.0
+    class: nkp-nutanix
     controlPlane:
       metadata: {}
       replicas: 1
