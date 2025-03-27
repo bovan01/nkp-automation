@@ -9,6 +9,6 @@ spec:
   placement:
     clusterSelector: {}
   virtualGroupRef:
-    name: workspace-admin
+    name: wolves-wrkspace-admins
   workspaceRoleRef:
     name: workspace-admin
