@@ -1,6 +1,8 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
+  annotations:
+    caren.nutanix.com/cluster-uuid: 0195d7ae-97eb-70b4-9664-6a12f325d45c
   labels:
     cluster.x-k8s.io/provider: nutanix
     konvoy.d2iq.io/cluster-name: matriarch
@@ -59,7 +61,6 @@ spec:
                       storageContainer: GSO-Everglade-07-StorageContainer
                       storageType: NutanixVolumes
                     reclaimPolicy: Delete
-                    volumeBindingMode: WaitForFirstConsumer
                 strategy: HelmAddon
             snapshotController:
               strategy: HelmAddon
@@ -173,49 +174,4 @@ metadata:
     konvoy.d2iq.io/provider: nutanix
   name: matriarch-pc-credentials-for-csi
   namespace: wolves
-type: Opaque
----
-apiVersion: v1
-data:
-  kommander-install.yaml: |-
-    version: v2.14.0
-    airgapped:
-      enabled: true
-kind: ConfigMap
-metadata:
-  labels:
-    cluster.x-k8s.io/provider: nutanix
-    clusterctl.cluster.x-k8s.io/move: ""
-    konvoy.d2iq.io/cluster-name: matriarch
-    konvoy.d2iq.io/provider: nutanix
-  name: kommander-bootstrap-configuration
-  namespace: default
----
-apiVersion: v1
-data:
-  uuid: ZWQxYTMwMDItOWZjOS00NDhiLTliYjEtYTNiN2VlMWY5OWJm
-immutable: true
-kind: Secret
-metadata:
-  labels:
-    cluster.x-k8s.io/cluster-name: matriarch
-    clusterctl.cluster.x-k8s.io/move: ""
-  name: prism-central-metadata
-  namespace: default
-type: Opaque
----
-apiVersion: v1
-data:
-  additionalTrustBundle: ""
-  insecure: dHJ1ZQ==
-  password: UGVwcG9saSQyMDIw
-  prismURL: aHR0cHM6Ly8xMC40OC41My4yMzc6OTQ0MA==
-  username: YWRtaW4=
-kind: Secret
-metadata:
-  labels:
-    clusterctl.cluster.x-k8s.io/move: ""
-    dkp-infrastructure-provider-type: nutanix-secret
-  name: global-nutanix-credentials
-  namespace: capx-system
 type: Opaque
