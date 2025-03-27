@@ -1,8 +1,6 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
-  annotations:
-    caren.nutanix.com/cluster-uuid: 0195d7ae-97eb-70b4-9664-6a12f325d45c
   labels:
     cluster.x-k8s.io/provider: nutanix
     konvoy.d2iq.io/cluster-name: matriarch
