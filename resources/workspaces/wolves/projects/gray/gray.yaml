@@ -8,9 +8,5 @@ metadata:
   namespace: wolves
 spec:
   namespaceName: gray
-  placement:
-    clusterSelector:
-      matchLabels:
-        env: test
   workspaceRef:
     name: wolves
