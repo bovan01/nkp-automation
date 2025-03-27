@@ -1,14 +1,12 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
-  annotations:
-    caren.nutanix.com/cluster-uuid: 0195d794-755f-77c2-ab2a-0158d250227d
   labels:
     cluster.x-k8s.io/provider: nutanix
     konvoy.d2iq.io/cluster-name: matriarch
     konvoy.d2iq.io/provider: nutanix
   name: matriarch
-  namespace: default
+  namespace: wolves
 spec:
   clusterNetwork:
     pods:
@@ -161,7 +159,7 @@ metadata:
     konvoy.d2iq.io/cluster-name: matriarch
     konvoy.d2iq.io/provider: nutanix
   name: matriarch-pc-credentials
-  namespace: default
+  namespace: wolves
 type: Opaque
 ---
 apiVersion: v1
@@ -174,7 +172,7 @@ metadata:
     konvoy.d2iq.io/cluster-name: matriarch
     konvoy.d2iq.io/provider: nutanix
   name: matriarch-pc-credentials-for-csi
-  namespace: default
+  namespace: wolves
 type: Opaque
 ---
 apiVersion: v1
