@@ -1,14 +1,14 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
+  annotations:
+    caren.nutanix.com/cluster-uuid: 0195d794-755f-77c2-ab2a-0158d250227d
   labels:
-    cluster.x-k8s.io/cluster-name: matriarch
     cluster.x-k8s.io/provider: nutanix
     konvoy.d2iq.io/cluster-name: matriarch
     konvoy.d2iq.io/provider: nutanix
-    topology.cluster.x-k8s.io/owned: ""
   name: matriarch
-  namespace: wolves
+  namespace: default
 spec:
   clusterNetwork:
     pods:
@@ -18,10 +18,10 @@ spec:
       cidrBlocks:
       - 10.96.0.0/12
   controlPlaneEndpoint:
-    host: "10.48.104.177"
-    port: 6443
+    host: ""
+    port: 0
   topology:
-    class: nkp-nutanix
+    class: nkp-nutanix-v2.14.0
     controlPlane:
       metadata: {}
       replicas: 1
@@ -32,12 +32,14 @@ spec:
           ccm:
             credentials:
               secretRef:
-                name: pc-credentials
+                name: matriarch-pc-credentials
             strategy: HelmAddon
           clusterAutoscaler:
             strategy: HelmAddon
           cni:
             provider: Cilium
+            strategy: HelmAddon
+          cosi:
             strategy: HelmAddon
           csi:
             defaultStorage:
@@ -47,13 +49,14 @@ spec:
               nutanix:
                 credentials:
                   secretRef:
-                    name: pc-credentials-for-csi
+                    name: matriarch-pc-credentials-for-csi
                 storageClassConfigs:
                   volume:
-                    allowExpansion: false
+                    allowExpansion: true
                     parameters:
                       csi.storage.k8s.io/fstype: ext4
                       description: CSI StorageClass nutanix-volume for matriarch
+                      flashMode: DISABLED
                       hypervisorAttached: ENABLED
                       storageContainer: GSO-Everglade-07-StorageContainer
                       storageType: NutanixVolumes
@@ -67,8 +70,8 @@ spec:
           serviceLoadBalancer:
             configuration:
               addressRanges:
-              - start: 10.48.104.178
-                end: 10.48.104.178
+              - end: 10.48.104.178
+                start: 10.48.104.178
             provider: MetalLB
         controlPlane:
           nutanix:
@@ -78,20 +81,22 @@ spec:
                 name: GSO-Everglade-07
                 type: name
               image:
-                name: nkp-rocky-9.5-1.31.4-20250317202029
+                name: nkp-rocky-9.5-release-1.30.5-20241125163629.qcow2
                 type: name
               memorySize: 8Gi
               subnets:
-              - name: 567
+              - name: "567"
                 type: name
               systemDiskSize: 80Gi
               vcpuSockets: 4
               vcpusPerSocket: 1
+        dns:
+          coreDNS: {}
         encryptionAtRest:
           providers:
           - secretbox: {}
         globalImageRegistryMirror:
-          url: https://10.48.104.168:5000
+          url: http://10.48.104.168:5000
         nutanix:
           controlPlaneEndpoint:
             host: 10.48.104.177
@@ -101,13 +106,118 @@ spec:
           prismCentralEndpoint:
             credentials:
               secretRef:
-                name: pc-credentials
+                name: matriarch-pc-credentials
             insecure: true
             url: https://10.48.53.237:9440
         users:
-        - name: bovan01
+        - name: konvoy
           sshAuthorizedKeys:
           - |
-            ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCslABnAjxzsUjIGRVpb5BVmX0PNIhyJSdix53+sEq6yILP6iUz1nGuW2aedv8IEyLlJNA+UIOA8k0x3yVk50PdYmBjB99+szSeMIKknVNsnzEB0BjaBrrc31IilqiNe4o0OivM0Jlq7hTEUOA8/1JB2CBb8ddymYEQjBmZa21hQVZHyI2xaYsE6pLGZzFZJaN8iWeF9cioZFxwN1ONbAT67Sg5vNJygKu+8sCwBtZEdBsHN+mas6zA7zVpzAF/X2HWJKJGecCJpoucKuILdxC853OrRBBfrVWTjvzS3Iuo1Ow+zrwRSWH7BE4IWOnB4SNxjPRw9oodO3GMvZmr8ak/LVFlFd82sdHc3O/F2yr3RG8ORoqjxY3vnpNDQlFV6zLtxS05PICl+FWBFnl+/7sK6FLAlj2pH0zPhJK+QX6U2KIKIgxjSwNeoJ4O6K48agWVToO0MCKLCXt42rVkLvGtII7GeHgLhNIkeXfNw6nThVq6iIlHGHZFJ3I7MZYbtH0=
+            ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCslABnAjxzsUjIGRVpb5BVmX0PNIhyJSdix53+sEq6yILP6iUz1nGuW2aedv8IEyLl
+JNA+UIOA8k0x3yVk50PdYmBjB99+szSeMIKknVNsnzEB0BjaBrrc31IilqiNe4o0OivM0Jlq7hTEUOA8/1JB2CBb8ddymYEQjBmZa21hQVZHyI2xaYsE
+6pLGZzFZJaN8iWeF9cioZFxwN1ONbAT67Sg5vNJygKu+8sCwBtZEdBsHN+mas6zA7zVpzAF/X2HWJKJGecCJpoucKuILdxC853OrRBBfrVWTjvzS3Iuo
+1Ow+zrwRSWH7BE4IWOnB4SNxjPRw9oodO3GMvZmr8ak/LVFlFd82sdHc3O/F2yr3RG8ORoqjxY3vnpNDQlFV6zLtxS05PICl+FWBFnl+/7sK6FLAlj2p
+H0zPhJK+QX6U2KIKIgxjSwNeoJ4O6K48agWVToO0MCKLCXt42rVkLvGtII7GeHgLhNIkeXfNw6nThVq6iIlHGHZFJ3I7MZYbtH0=
           sudo: ALL=(ALL) NOPASSWD:ALL
     version: v1.31.4
+    workers:
+      machineDeployments:
+      - class: default-worker
+        metadata:
+          annotations:
+            cluster.x-k8s.io/cluster-api-autoscaler-node-group-max-size: "1"
+            cluster.x-k8s.io/cluster-api-autoscaler-node-group-min-size: "1"
+        name: md-0
+        variables:
+          overrides:
+          - name: workerConfig
+            value:
+              nutanix:
+                machineDetails:
+                  bootType: uefi
+                  cluster:
+                    name: GSO-Everglade-07
+                    type: name
+                  image:
+                    name: nkp-rocky-9.5-release-1.30.5-20241125163629.qcow2
+                    type: name
+                  memorySize: 24Gi
+                  subnets:
+                  - name: "567"
+                    type: name
+                  systemDiskSize: 80Gi
+                  vcpuSockets: 8
+                  vcpusPerSocket: 1
+---
+apiVersion: v1
+data:
+  credentials: WwogICAgewogICAgICAgICJ0eXBlIjogImJhc2ljX2F1dGgiLAogICAgICAgICJkYXRhIjogewogICAgICAgICAgICAicHJpc21DZ
+W50cmFsIjogewogICAgICAgICAgICAgICAgInVzZXJuYW1lIjogImFkbWluIiwKICAgICAgICAgICAgICAgICJwYXNzd29yZCI6ICJQZXBwb2xpJDIwM
+jAiCiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICB9Cl0=
+kind: Secret
+metadata:
+  labels:
+    cluster.x-k8s.io/provider: nutanix
+    konvoy.d2iq.io/cluster-name: matriarch
+    konvoy.d2iq.io/provider: nutanix
+  name: matriarch-pc-credentials
+  namespace: default
+type: Opaque
+---
+apiVersion: v1
+data:
+  key: MTAuNDguNTMuMjM3Ojk0NDA6YWRtaW46UGVwcG9saSQyMDIw
+kind: Secret
+metadata:
+  labels:
+    cluster.x-k8s.io/provider: nutanix
+    konvoy.d2iq.io/cluster-name: matriarch
+    konvoy.d2iq.io/provider: nutanix
+  name: matriarch-pc-credentials-for-csi
+  namespace: default
+type: Opaque
+---
+apiVersion: v1
+data:
+  kommander-install.yaml: |-
+    version: v2.14.0
+    airgapped:
+      enabled: true
+kind: ConfigMap
+metadata:
+  labels:
+    cluster.x-k8s.io/provider: nutanix
+    clusterctl.cluster.x-k8s.io/move: ""
+    konvoy.d2iq.io/cluster-name: matriarch
+    konvoy.d2iq.io/provider: nutanix
+  name: kommander-bootstrap-configuration
+  namespace: default
+---
+apiVersion: v1
+data:
+  uuid: ZWQxYTMwMDItOWZjOS00NDhiLTliYjEtYTNiN2VlMWY5OWJm
+immutable: true
+kind: Secret
+metadata:
+  labels:
+    cluster.x-k8s.io/cluster-name: matriarch
+    clusterctl.cluster.x-k8s.io/move: ""
+  name: prism-central-metadata
+  namespace: default
+type: Opaque
+---
+apiVersion: v1
+data:
+  additionalTrustBundle: ""
+  insecure: dHJ1ZQ==
+  password: UGVwcG9saSQyMDIw
+  prismURL: aHR0cHM6Ly8xMC40OC41My4yMzc6OTQ0MA==
+  username: YWRtaW4=
+kind: Secret
+metadata:
+  labels:
+    clusterctl.cluster.x-k8s.io/move: ""
+    dkp-infrastructure-provider-type: nutanix-secret
+  name: global-nutanix-credentials
+  namespace: capx-system
+type: Opaque
