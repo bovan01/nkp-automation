@@ -2,7 +2,7 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
   labels:
-    cluster.x-k8s.io/provider: nutanix-v2.14.0
+    cluster.x-k8s.io/provider: nutanix
     konvoy.d2iq.io/cluster-name: matriarch
     konvoy.d2iq.io/provider: nutanix
   name: matriarch
@@ -19,7 +19,7 @@ spec:
     host: ""
     port: 0
   topology:
-    class: nkp-nutanix
+    class: nkp-nutanix-v2.14.0
     controlPlane:
       metadata: {}
       replicas: 1
